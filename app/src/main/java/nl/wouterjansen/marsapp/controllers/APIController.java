@@ -1,6 +1,4 @@
 package nl.wouterjansen.marsapp.controllers;
-import nl.wouterjansen.marsapp.MainActivity;
-import nl.wouterjansen.marsapp.models.HttpHandler;
 import nl.wouterjansen.marsapp.models.RoverPictures;
 
 import android.os.AsyncTask;
@@ -20,8 +18,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import static android.content.ContentValues.TAG;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,16 +27,16 @@ import java.util.HashMap;
 
 public class APIController {
     //APIController. Wrapper voor Async requests
-    //api_key=RcINb3QI7UFA8FGngjxYutYAsDnA7pifZWbhhnTh
+
     //fullname, img_src & id are needed
     private ArrayList<RoverPictures> roverPictures;
     private String mFileContents;
-    ArrayList<HashMap<String, String>> roverDataList;
+    ArrayList<HashMap<String, String>> roverDataList = new ArrayList<>();
 
     public void getImages() {
         //Send API Key
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2018-03-12&page=1&api_key=DEMO_KEY");
+        downloadData.execute("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2018-03-12&page=1&api_key=");
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -79,7 +75,6 @@ public class APIController {
                     inputStream = httpConnection.getInputStream();
                     response = getStringFromInputStream(inputStream);
                     Log.i(TAG, "doInBackground response = " + response);
-                    Log.i(TAG, inputStream.toString());
                 } else {
                     Log.e(TAG, "Invalid response");
                 }
@@ -100,48 +95,44 @@ public class APIController {
                 return;
             }
 
-            // Het resultaat is in ons geval een stuk tekst in JSON formaat.
-            // Daar moeten we de info die we willen tonen uit filteren (parsen).
-            // Dat kan met een JSONObject.
             JSONObject jsonObject;
             try {
                 // Top level json object
                 jsonObject = new JSONObject(response);
 
                 // Get all users and start looping
-                JSONArray users = jsonObject.getJSONArray("photos");
-                for(int idx = 0; idx < users.length(); idx++) {
+                JSONArray photos = jsonObject.getJSONArray("photos");
+
+                Log.i("WHOO", photos.toString());
+                for(int i = 0; i < photos.length(); i++) {
                     // array level objects and get user
-                    JSONObject user = users.getJSONObject(idx);
+                    JSONObject user = photos.getJSONObject(i);
 
-                    // Get id, img_src
-                    JSONObject name = user.getJSONObject("photos");
-                    String id = name.getString("id");
-                    String img_src = name.getString("img_src");
+                        String id = user.getString("id");
+                        //String full_name = c.getString("full_name");
+                        String img_src = user.getString("img_src");
 
-                    Log.i(TAG, "Got user " + id + " " + img_src);
+                        // tmp hash map for single contact
+                        HashMap<String, String> roverPhoto = new HashMap<>();
 
-                    // Get image url
-                    //JSONObject picture = user.getJSONObject("picture");
-                    //String imageurl = picture.getString("large");
-                    //Log.i(TAG, imageurl);
+                        //Get ID & Image
+                        roverPhoto.put("id", id);
+                        roverPhoto.put("img_src", img_src);
 
-                    // Create new Person object
-                    HashMap<String, String> roverPhoto = new HashMap<>();
+                        //Get Full_name (within another object)
+                        JSONObject picture = user.getJSONObject("camera");
+                        String full_name = picture.getString("full_name");
 
-                    // adding each child node to HashMap key => value
-                    roverPhoto.put("id", id);
-                    //roverPhoto.put("full_name", full_name);
-                    roverPhoto.put("img_src", img_src);
-                    Log.e("DATA", roverPhoto.toString());
-                    // adding roverPhoto to rover list
-                    roverDataList.add(roverPhoto);
+                        roverPhoto.put("full_name", full_name);
 
+                        // adding roverPhoto to rover list
+                        roverDataList.add(roverPhoto);
                 }
             } catch( JSONException ex) {
                 Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
             }
         }
+
         private  String getStringFromInputStream(InputStream is) {
 
             BufferedReader br = null;
