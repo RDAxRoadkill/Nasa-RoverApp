@@ -3,6 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/marsBackground"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
     <TextView
         android:id="@+id/roverDetail"
         android:layout_width="match_parent"
@@ -10,8 +17,7 @@
         android:paddingLeft="10dp"
         android:paddingTop="15dp"
         android:textColor="@android:color/black"
-        android:background="#550000"
-        android:text="Mast Camera"
+        android:text="Whoops! No data found"
         android:gravity="start"/>
 
 </android.support.constraint.ConstraintLayout>
