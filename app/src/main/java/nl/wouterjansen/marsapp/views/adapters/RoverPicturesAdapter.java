@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.squareup.picasso.Picasso;
 
 import nl.wouterjansen.marsapp.MainActivity;
 import nl.wouterjansen.marsapp.R;
@@ -41,8 +44,9 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater mealInflater = LayoutInflater.from(getContext());
-        View roverPictures = mealInflater.inflate(R.layout.rover_row, parent, false);
+        LayoutInflater roverInflater = context.getLayoutInflater();
+        View roverPictures = roverInflater.inflate(R.layout.rover_row, parent, false);
+
 
         //Reference to data
         String singlePhoto = getItem(position);
@@ -53,33 +57,27 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
         ImageView photo = (ImageView) roverPictures.findViewById(R.id.marsImage);
 
         ID.setText(singlePhoto);
-        Log.d("IMAGE", img_srcArray.toString());
+        Log.d("IMAGE", img_srcArray[position]);
+
+        Picasso.get().load(img_srcArray[position]).into(photo);
         //photo.setImageURI(Uri.parse("https://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG"));
 
+        //TODO: Fix onClick method
+        /*
+        View roverList = roverInflater.inflate(R.layout.activity_main, parent, false);
+        roverList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("SelectedItem: ", i + "");
+
+                String picturePosition = String.valueOf(adapterView.getItemAtPosition(i));
+                Log.d("Image NO", picturePosition);
+
+                Intent detailIntent = new Intent(context, RoverDetail.class);
+                context.startActivity(detailIntent);
+            }
+        });
+        */
         return roverPictures;
     }
-
-/* Old
-    public RoverPicturesAdapter(Context context, String[] pictureArray) {
-        super(context, R.layout.rover_row, pictureArray);
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater mealInflater = LayoutInflater.from(getContext());
-        View roverPictures = mealInflater.inflate(R.layout.rover_row, parent, false);
-
-        //Reference to data
-        String singlePhoto = getItem(position);
-        //Reference to view text
-        TextView photoID = (TextView) roverPictures.findViewById(R.id.pictureID);
-
-        //Reference to image
-        //ImageView mealImage = (ImageView) mealView.findViewById(R.id.mealImage);
-
-        photoID.setText(singlePhoto);
-
-        return roverPictures;
-    }
-   */
 }

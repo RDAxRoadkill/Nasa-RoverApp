@@ -43,8 +43,8 @@ public class GetAPIData extends AsyncTask<Void, Void, JSONArray> {
             JSONArray apiData = new JSONArray();
             try {
                 //URL Object
-                URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2018-03-12&page=1&api_key=" +API_KEY);
-                //URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=" +API_KEY);
+                //URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2018-03-12&page=1&api_key=" +API_KEY);
+                URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=" +API_KEY);
 
                 //Open Connection
                 URLConnection urlConnection = url.openConnection();

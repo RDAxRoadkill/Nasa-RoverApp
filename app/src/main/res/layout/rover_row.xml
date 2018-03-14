@@ -5,9 +5,11 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/marsImage" />
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/marsImage"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/pictureID"
@@ -19,10 +21,6 @@
         android:paddingBottom="15dp"
         android:textColor="@android:color/white"
         android:text="Image ID: 123456"
-        android:background="#550000"
-        android:gravity="end"/>
-
-
-
-
+        android:gravity="end"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

@@ -51,16 +51,6 @@ public class MainActivity extends AppCompatActivity{
                 listView = (ListView) findViewById(R.id.pictureList);
                 listView.setAdapter(adapter);
 
-                //DB.addPictures(output);
-
-                //TODO: Use actual data and fix this structure up.
-                String[] roverArray = {"Spagett", "Twinkies", "Potato"};
-                //final RoverPictures roverPictures = new RoverPictures();
-                //roverPictures.id = 666;
-                //adapter = new RoverPicturesAdapter(context, roverArray);
-                //listView = (ListView) findViewById(R.id.pictureList);
-                //listView.setAdapter(adapter);
-
                 listView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
