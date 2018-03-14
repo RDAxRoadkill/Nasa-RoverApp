@@ -23,19 +23,19 @@ public class RoverPicturesAdapter extends ArrayAdapter<String>  {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater mealInflater = LayoutInflater.from(getContext());
-        View mealView = mealInflater.inflate(R.layout.rover_row, parent, false);
+        View roverPictures = mealInflater.inflate(R.layout.rover_row, parent, false);
 
         //Reference to data
-        String singleMeal = getItem(position);
+        String singlePhoto = getItem(position);
         //Reference to view text
-        TextView mealName = (TextView) mealView.findViewById(R.id.pictureID);
+        TextView photoID = (TextView) roverPictures.findViewById(R.id.pictureID);
 
         //Reference to image
         //ImageView mealImage = (ImageView) mealView.findViewById(R.id.mealImage);
 
-        mealName.setText(singleMeal);
+        photoID.setText(singlePhoto);
 
-        return mealView;
+        return roverPictures;
     }
 
 }
