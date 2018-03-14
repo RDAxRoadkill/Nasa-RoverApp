@@ -10,12 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import nl.wouterjansen.marsapp.R;
 import nl.wouterjansen.marsapp.controllers.APIController;
-import nl.wouterjansen.marsapp.models.AsyncResponse;
-import nl.wouterjansen.marsapp.models.RoverPictures;
 
 /**
  * Created by Wouter on 3/14/2018.

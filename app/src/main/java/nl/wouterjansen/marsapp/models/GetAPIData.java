@@ -7,17 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static android.content.ContentValues.TAG;
 
@@ -26,8 +23,6 @@ import static android.content.ContentValues.TAG;
  */
 
 public class GetAPIData extends AsyncTask<Void, Void, JSONArray> {
-        //First string: download location, void is usually used for a progress bar
-        //Last string is for the result
         public AsyncResponse res = null;
 
         private String API_KEY;
@@ -42,7 +37,7 @@ public class GetAPIData extends AsyncTask<Void, Void, JSONArray> {
         protected JSONArray doInBackground(Void... params) {
             JSONArray apiData = new JSONArray();
             try {
-                //URL Object
+                //URL Object, two here for test/switching purposes
                 //URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2018-03-12&page=1&api_key=" +API_KEY);
                 URL url = new URL("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=" +API_KEY);
 
@@ -88,7 +83,7 @@ public class GetAPIData extends AsyncTask<Void, Void, JSONArray> {
             } catch( JSONException ex) {
                 Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
             }
-            Log.d("WEW ", roverPictures.toString());
+            //Log.d("WEW ", roverPictures.toString());
             //Returning the variable
             res.processFinish(roverPictures);
         }

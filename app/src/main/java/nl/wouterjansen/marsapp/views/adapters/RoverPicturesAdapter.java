@@ -1,25 +1,17 @@
 package nl.wouterjansen.marsapp.views.adapters;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
 
 import com.squareup.picasso.Picasso;
 
-import nl.wouterjansen.marsapp.MainActivity;
 import nl.wouterjansen.marsapp.R;
 import nl.wouterjansen.marsapp.views.RoverDetail;
 
@@ -61,9 +53,6 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
         //Log.d("IMAGE", img_srcArray[position]);
 
         Picasso.get().load(img_srcArray[position]).into(photo);
-        //photo.setImageURI(Uri.parse("https://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG"));
-
-        //TODO: Fix onClick method
 
         roverPictures.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +62,6 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
 
                 Intent detailIntent = new Intent(context, RoverDetail.class);
                 int cleanPosition = Integer.valueOf(idArray[position].split(": ")[1]);
-
-                //System.out.println(cleanPosition);
-                //System.out.println(img_srcArray[position]);
-                //System.out.println(full_nameArray[position]);
 
                 detailIntent.putExtra("ID", cleanPosition);
                 detailIntent.putExtra("photo", img_srcArray[position]);

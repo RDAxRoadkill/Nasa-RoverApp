@@ -1,27 +1,16 @@
 package nl.wouterjansen.marsapp;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import nl.wouterjansen.marsapp.controllers.APIController;
 import nl.wouterjansen.marsapp.models.AsyncResponse;
 import nl.wouterjansen.marsapp.models.RoverPictures;
-import nl.wouterjansen.marsapp.views.RoverDetail;
 import nl.wouterjansen.marsapp.views.adapters.RoverPicturesAdapter;
 
 public class MainActivity extends AppCompatActivity{
     ListView listView;
-    //ListAdapter adapter;
-    //ArrayList roverArray = new ArrayList();
     private APIController apiController = new APIController();
     private MainActivity context = this;
 
@@ -30,12 +19,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         apiController.getImages(new AsyncResponse() {
             @Override
             public void processFinish(RoverPictures[] output) {
-                Log.d("WOOOW", output.toString());
-                //String[] testArray = {output};
-
                 //TODO: Move this to a seperate function
                 String[] ids = new String[output.length];
                 String[] img_srcs = new String[output.length];
