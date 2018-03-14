@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/marsImage" />
 
     <TextView
         android:id="@+id/pictureID"
@@ -13,9 +18,11 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:textColor="@android:color/white"
-        android:background="#550000"
         android:text="Image ID: 123456"
+        android:background="#550000"
         android:gravity="end"/>
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
