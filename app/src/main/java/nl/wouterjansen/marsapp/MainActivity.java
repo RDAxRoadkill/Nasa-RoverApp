@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity{
                 Log.d("WOOOW", output.toString());
                 //String[] testArray = {output};
 
-                //TODO: Move this to private function(?)
+                //TODO: Move this to a seperate function
                 String[] ids = new String[output.length];
                 String[] img_srcs = new String[output.length];
                 String[] camera_full_names = new String[output.length];
@@ -50,30 +50,7 @@ public class MainActivity extends AppCompatActivity{
                 RoverPicturesAdapter adapter = new RoverPicturesAdapter(context, ids, img_srcs, camera_full_names);
                 listView = (ListView) findViewById(R.id.pictureList);
                 listView.setAdapter(adapter);
-
-                listView.setOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Log.d("SelectedItem: ", i + "");
-
-                                String picturePosition = String.valueOf(adapterView.getItemAtPosition(i));
-                                Log.d("Image NO", picturePosition);
-
-                                Intent detailIntent = new Intent(MainActivity.this, RoverDetail.class);
-                                startActivity(detailIntent);
-                            }
-                        }
-                );
             }
         });
     }
-/*
-    //this override the implemented method from asyncTask
-    @Override
-    public void processFinish(RoverPictures[] output){
-        //Here you will receive the result fired from async class
-        //of onPostExecute(result) method.
-    }
- */
 }

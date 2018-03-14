@@ -8,6 +8,7 @@ import nl.wouterjansen.marsapp.models.RoverPictures;
  */
 
 public class APIController {
+    //TODO: Cleanup data
     //APIController; Wrapper voor Async requests
     //api_key=RcINb3QI7UFA8FGngjxYutYAsDnA7pifZWbhhnTh
     private final String API_KEY = "RcINb3QI7UFA8FGngjxYutYAsDnA7pifZWbhhnTh";

@@ -42,8 +42,9 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
         this.full_nameArray = full_nameArray;
     }
 
+    //TODO: Cleanup data
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater roverInflater = context.getLayoutInflater();
         View roverPictures = roverInflater.inflate(R.layout.rover_row, parent, false);
 
@@ -54,30 +55,36 @@ public class RoverPicturesAdapter extends ArrayAdapter<String> {
         TextView ID = (TextView) roverPictures.findViewById(R.id.pictureID);
 
         //Reference to image
-        ImageView photo = (ImageView) roverPictures.findViewById(R.id.marsImage);
+        final ImageView photo = (ImageView) roverPictures.findViewById(R.id.marsImage);
 
         ID.setText(singlePhoto);
-        Log.d("IMAGE", img_srcArray[position]);
+        //Log.d("IMAGE", img_srcArray[position]);
 
         Picasso.get().load(img_srcArray[position]).into(photo);
         //photo.setImageURI(Uri.parse("https://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG"));
 
         //TODO: Fix onClick method
-        /*
-        View roverList = roverInflater.inflate(R.layout.activity_main, parent, false);
-        roverList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("SelectedItem: ", i + "");
 
-                String picturePosition = String.valueOf(adapterView.getItemAtPosition(i));
-                Log.d("Image NO", picturePosition);
+        roverPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("SelectedItem: ", position + "");
+                Log.d("Rover adapter", "is working");
 
                 Intent detailIntent = new Intent(context, RoverDetail.class);
+                int cleanPosition = Integer.valueOf(idArray[position].split(": ")[1]);
+
+                //System.out.println(cleanPosition);
+                //System.out.println(img_srcArray[position]);
+                //System.out.println(full_nameArray[position]);
+
+                detailIntent.putExtra("ID", cleanPosition);
+                detailIntent.putExtra("photo", img_srcArray[position]);
+                detailIntent.putExtra("cName", full_nameArray[position]);
                 context.startActivity(detailIntent);
             }
         });
-        */
+
         return roverPictures;
     }
 }
