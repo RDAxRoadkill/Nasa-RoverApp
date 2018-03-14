@@ -5,5 +5,5 @@ package nl.wouterjansen.marsapp.models;
  */
 
 public interface AsyncResponse {
-    void processFinish(String[] output);
+    void processFinish(RoverPictures[] output);
 }

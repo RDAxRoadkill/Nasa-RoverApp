@@ -8,9 +8,8 @@ import nl.wouterjansen.marsapp.models.RoverPictures;
  */
 
 public class APIController {
-    //APIController. Wrapper voor Async requests
+    //APIController; Wrapper voor Async requests
     //api_key=RcINb3QI7UFA8FGngjxYutYAsDnA7pifZWbhhnTh
-    //fullname, img_src & id are needed
     private final String API_KEY = "RcINb3QI7UFA8FGngjxYutYAsDnA7pifZWbhhnTh";
 
     public void getImages(AsyncResponse response) {
