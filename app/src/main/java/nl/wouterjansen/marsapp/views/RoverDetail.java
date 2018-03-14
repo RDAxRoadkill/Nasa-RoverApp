@@ -1,5 +1,6 @@
 package nl.wouterjansen.marsapp.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,13 @@ import nl.wouterjansen.marsapp.controllers.APIController;
  * Created by Wouter on 3/14/2018.
  */
 
-public class RoverDetail extends AppCompatActivity {
+/**
+ * By extending activity instead of AppCompatActivty
+ * We get rid of the 'action bar'.
+ * Easiest solution, since we do not need any ACP functions.
+ */
+
+public class RoverDetail extends Activity {
 
     private APIController API = new APIController();
     @Override
